@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini calculater</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        #container {
+            width: 62%;
+            margin: auto;
+            padding: 40px;
+            border: 1px solid black;
+            margin-top: 30px;
+            border-radius: 6px;
+            background-color: teal;
+        }
+        .int3{
+            margin-left:30px;
+            font-size: 30px;
+        }
+        .bnt1{
+            margin-left: 90px;
+            font-size: 25px;
+            border-radius: 6px;
+        }
+        .bnt1:hover{
+            cursor: pointer;
+            background-color: aqua;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <input type="number" id="int" class="int3" placeholder="Enter 1nd Number" required>
+        <input type="number" id="int2" class="int3" placeholder="Enter 2st Number" required><br><br>
+
+        <button id="Add" class="bnt1">Add</button>
+        <button id="sub" class="bnt1">Subtract</button>
+        <button id="multi" class="bnt1">Multiply</button>
+        <button id="div" class="bnt1">Divide</button>
+
+
+    </div>
+    
+</body>
+</html>
+<script>
+
+    let num1 = document.getElementById("int");
+    let num2 = document.getElementById("int2");
+
+    // For Addition
+
+    let Add = document.getElementById("Add")
+    Add.addEventListener("click",function(){
+        Additon()
+    })
+
+    const Additon =()=>{
+        let sum = Number(num1.value)+Number(num2.value)
+        
+        alert(` The Addition  is == ${sum}`)
+
+        num1.value =""
+        num2.value =""
+
+        
+        
+        
+    }
+
+
+    // For Subtriction
+
+    let Sub = document.getElementById("sub")
+    Sub.addEventListener("click",function(){
+        Subtriction()
+    })
+
+    const Subtriction =()=>{
+        let sub = Number(num1.value)-Number(num2.value)
+        alert(`The Subtriction is == ${sub}`)
+
+
+        num1.value =""
+        num2.value =""
+
+    }
+
+
+    // For Multiplication
+
+
+    let Multi = document.getElementById("multi")
+    Multi.addEventListener("click",function(){
+        Multiplication()
+    })
+
+    const Multiplication = ()=>{
+        let multi = Number(num1.value)*Number(num2.value)
+        alert(`The Multiplication is == ${multi}`)
+
+        num1.value =""
+        num2.value =""
+
+    }
+
+
+    // For Division
+
+
+    let Div = document.getElementById("div")
+    Div.addEventListener("click",function(){
+        Division()
+    })
+
+    const Division =()=>{
+        let div = Number(num1.value)/Number(num2.value)
+        alert(`The Division is == ${div}`)
+
+        num1.value =""
+        num2.value =""
+
+    }
+
+</script>
