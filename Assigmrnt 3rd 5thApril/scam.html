@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Events</title>
+    <style>
+        img{
+            width: 50%;
+        }
+        img:hover{
+            cursor: pointer;
+        }
+    </style>
+  </head>
+  <body>
+    
+    <img
+      src="https://miro.medium.com/max/1400/1*mdcu3Ku9r44HMtraHUqu5g.jpeg"
+      alt="logo"
+    />
+  </body>
+</html>
+<script>
+  // Write js here
+
+  let img = document.querySelector("img")
+  img.addEventListener("click",function(){
+    scam()
+  })
+
+  function scam(){
+    alert(`The website you are going to visit may harm your computer, do you still want to redirect?"`)
+  }
+</script>
