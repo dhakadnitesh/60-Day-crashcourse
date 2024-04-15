@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <style>
+        body{
+    padding: 0;
+    margin: 0;
+    background-color:  #f6f7ff;
+}
+
+/* .h1{
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 70px;
+} */
+
+#login{
+    padding: 20px;
+    /* border: 1px solid red; */
+    margin: auto;
+    width: 30%;
+    margin-top: 35px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+}
+.h2{
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    /* padding: 15px; */
+}
+
+form>label{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 8px;
+    margin-left: 22px;
+}
+
+form>input{
+    margin-bottom: 20px;
+    padding: 12px;
+    border-radius: 10px;
+    border:none;
+    font-size: 17px;
+    width: 82%;
+    margin-left: 20px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+#btn{
+    background-color: #1a56db;
+    /* margin-left: 30px; */
+    width: 88%;
+    color: white;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#btn:hover{
+    cursor: pointer;
+
+}
+
+
+
+
+    </style>
+</head>
+<body>
+
+    <div id="login">
+        <h2 class="h2">Login</h2>
+        <form action="">
+            
+            <label for="">Email</label>
+            <input type="email" placeholder="Email" id="email" required>
+            <label for="">Password</label>
+            <input type="password" placeholder="Password" id="password" required>
+            
+            <input type="submit" id="btn">
+        </form>
+
+
+    </div>
+    <br>
+    
+</body>
+</html>
+<script>
+    let form = document.querySelector("form")
+    form.addEventListener("submit",function(){
+        logindata()
+    })
+
+    let logindata1 = JSON.parse(localStorage.getItem("signupdata")) || []
+
+    function logindata(){
+        event.preventDefault()
+
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+
+        let narr = logindata1.filter((ele)=>{
+            return ele.email === email && ele.password === password
+        })
+        if(narr.length > 0){
+            alert("Login Success!")
+            window.location.href ="./index.html"
+        }
+        else{
+            alert("Wrong Creadiential,Please Check The Info.....")
+        }
+
+     
+    }
+</script>
