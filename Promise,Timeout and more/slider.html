@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        #container {
+            margin: auto;
+            border: 1px solid red;
+            height: 230px;
+            width: 45%;
+            margin-top: 40px;
+            border-radius: 10px;
+        }
+
+        #slideshow{
+            height: 230px;
+            border-radius: 10px;
+            width: 100%;
+
+        }
+
+        .image {
+            height: 230px;
+            border-radius: 10px;
+            width: 100%;
+        }
+
+        #root {
+            margin-top: 40px;
+            margin-left: 40%;
+            /* gap: 30px; */
+        }
+
+        .btn {
+            margin-left: 10px;
+            padding: 5px;
+        }
+
+        .btn:hover {
+            cursor: pointer;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <img  id="slideshow" src="https://img.freepik.com/free-photo/breathtaking-shot-beautiful-stones-turquoise-water-lake-hills-background_181624-12847.jpg?size=626&ext=jpg&ga=GA1.1.1676576771.1706928436&semt=sph" alt="logo">
+    </div>
+
+    <div id="root">
+        <button class="btn" onclick="start()">Start</button>
+        <button class="btn" onclick="stop()">Stop</button>
+        <button class="btn" onclick="next()">Next</button>
+        <button class="btn" onclick="previous()">Previous</button>
+    </div>
+
+</body>
+
+</html>
+<script>
+    let img = [
+        "https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg?size=626&ext=jpg&ga=GA1.1.1676576771.1706928436&semt=sph",
+        "https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg?size=626&ext=jpg&ga=GA1.1.1676576771.1706928436&semt=sph",
+        "https://img.freepik.com/free-photo/cascade-boat-clean-china-natural-rural_1417-1356.jpg?size=626&ext=jpg&ga=GA1.1.1676576771.1706928436&semt=sph",
+        "https://img.freepik.com/free-photo/beautiful-shot-small-lake-with-wooden-rowboat-focus-breathtaking-clouds-sky_181624-2490.jpg?size=626&ext=jpg&ga=GA1.1.1676576771.1706928436&semt=sph",
+        "https://img.freepik.com/premium-photo/mountain-landscape-forest-stones-lake-with-reflection_117406-5929.jpg?size=626&ext=jpg&ga=GA1.1.1676576771.1706928436&semt=sph",
+        "https://img.freepik.com/free-photo/3d-render-willow-tree-grassy-globe_1048-5835.jpg?size=626&ext=jpg&ga=GA1.1.1676576771.1706928436&semt=sph",
+        "https://img.freepik.com/premium-photo/tropical-jungles-southeast-asia_480416-79.jpg?size=626&ext=jpg&ga=GA1.1.1676576771.1706928436&semt=sph",
+        "https://img.freepik.com/free-photo/nature-photography-from-air_1321-1544.jpg?size=626&ext=jpg&ga=GA1.1.1676576771.1706928436&semt=sph",
+         "https://img.freepik.com/free-photo/wet-vietnam-mountain-flow-stream-rural_1417-1357.jpg?size=626&ext=jpg&ga=GA1.1.1676576771.1706928436&semt=sph",
+         "https://img.freepik.com/free-photo/colorful-majestic-waterfall-national-park-forest-during-autumn_554837-661.jpg?size=626&ext=jpg&ga=GA1.1.1676576771.1706928436&semt=sph",
+         "https://img.freepik.com/free-photo/sea-vacation-beach-villa-nature_1203-5314.jpg?size=626&ext=jpg&ga=GA1.1.1676576771.1706928436&semt=sph",
+         "https://img.freepik.com/free-photo/vestrahorn-mountains-stokksnes-iceland_335224-667.jpg?size=626&ext=jpg&ga=GA1.1.1676576771.1706928436&semt=sph",
+         "https://img.freepik.com/free-photo/beautiful-wooden-pathway-going-breathtaking-colorful-trees-forest_181624-5840.jpg?size=626&ext=jpg&ga=GA1.1.1676576771.1706928436&semt=sph",
+         "https://img.freepik.com/free-photo/glowing-spaceship-orbits-sphere-deep-space-generated-by-ai_188544-9658.jpg?size=626&ext=jpg&ga=GA1.1.1676576771.1706928436&semt=sph",
+         "https://img.freepik.com/free-photo/beautiful-mountains_181624-145.jpg?size=626&ext=jpg&ga=GA1.1.1676576771.1706928436&semt=sph",
+         "https://img.freepik.com/free-photo/boatman-punting-boat-river-arashiyama-autumn-season-along-river-kyoto-japan_335224-22.jpg?size=626&ext=jpg&ga=GA1.1.1676576771.1706928436&semt=sph",
+         "https://img.freepik.com/free-photo/lake-mountains_1204-502.jpg?size=626&ext=jpg&ga=GA1.1.1676576771.1706928436&semt=sph",
+        
+         
+
+
+
+    ]
+    let i=0
+    let id;
+
+    function displayimg(index) {
+        let div = document.getElementById("container")
+        div.innerHTML = ""
+
+        let image = document.createElement("img")
+        image.src = img[index]
+        image.className = "image"
+        div.append(image)
+    }
+
+
+    function start(){
+        id = setInterval(()=>{
+            displayimg(i)
+            i++
+            if(i==img.length){
+                i = 0
+            }
+        },2000)
+    }
+
+    function stop(){
+        clearInterval(id)
+    }
+
+    function next(){
+        displayimg(++i)
+        if(i===img.length-1){
+            i = 0
+        }
+    }
+
+    function previous(){
+    if(i === 0){
+        i = img.length - 1;
+    } else {
+        i--;
+    }
+    displayimg(i);
+}
+
+
+
+   
+
+
+    
+
+
+</script>
