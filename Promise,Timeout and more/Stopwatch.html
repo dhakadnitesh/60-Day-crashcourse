@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StopWatch</title>
+
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+        }
+
+        #container{
+            border: 1px solid blue;
+            margin: auto;
+            width: 25%;
+            height: 150px;
+            margin-top: 40px;
+            border-radius: 10px;
+            background-color: aqua;
+
+        }
+
+        .h2{
+            margin-left: 40%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 30px;
+        }
+        .btn{
+            margin-left: 40px;
+            padding: 8px;
+            font-family: sans-serif;
+            font-weight: bold;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 6px;
+        }
+        .btn:hover{
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+
+        <h2 class="h2">0m 0s</h2>
+
+        <button class="btn" onclick="Start()">Start</button>
+        <button class="btn" onclick="Pause()">Pause</button>
+        <button class="btn" onclick="Reset()">Reset</button>
+
+    </div>
+    
+</body>
+</html>
+<script>
+    let id ;
+    let count = 0 ;
+
+    // function Start(){
+    //     clearInterval(id)
+    //     id = setInterval(()=>{
+    //         document.querySelector("h2").innerHTML = count++ +" "+"s"
+    //     },500)
+
+    // }
+
+
+    function Start() {
+    clearInterval(id); 
+    id = setInterval(() => {
+        count++;
+        let minutes = Math.floor(count / 60);
+        let seconds = count % 60;
+        document.querySelector("h2").innerHTML = `${minutes}m ${seconds}s`;
+    }, 500);
+}
+
+    function Pause(){
+        clearInterval(id)
+
+    }
+
+    function Reset(){
+        clearInterval(id)
+        count = 0
+
+        document.querySelector("h2").innerHTML = "0m 0s"
+    }
+
+
+
+</script>
