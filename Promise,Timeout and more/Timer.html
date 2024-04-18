@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        div {
+            border: 2px solid whitesmoke;
+            border-radius: 10px;
+            width: 300px;
+            margin: auto;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+
+        button {
+            margin: 10px;
+            padding: 5px 10px;
+            font-size: 1em;
+            cursor: pointer;
+            background-color: lightblue;
+            border-radius: 5px;
+            border: none;
+        }
+
+        input[type="number"] {
+            width: 50px;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1><span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span></h1>
+        <input type="number" id="inputHours" min="0" value="0"> :
+        <input type="number" id="inputMinutes" min="0" value="1"> :
+        <input type="number" id="inputSeconds" min="0" value="5">
+        <br>
+        <button id="startBtn">Start</button>
+        <button id="pauseBtn">Pause</button>
+        <button id="resetBtn">Reset</button>
+    </div>
+
+    <script>
+        var hours = 0;
+        var minutes = 0;
+        var seconds = 0;
+        var timer;
+
+        function startTimer() {
+            if (timer) {
+                clearInterval(timer)
+            }
+
+
+
+            timer = setInterval(function () {
+                if (seconds === 0) {
+                    if (minutes === 0) {
+                        if (hours === 0) {
+                            clearInterval(timer);
+                            return;
+                        }
+                        hours--;
+                        minutes = 59;
+                    } else {
+                        minutes--;
+                    }
+                    seconds = 59;
+                } else {
+                    seconds--;
+                }
+
+                document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+                document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+                document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+            }, 1000);
+        }
+
+        document.getElementById("startBtn").addEventListener("click", function () {
+            hours = parseInt(document.getElementById("inputHours").value) || 0;
+            minutes = parseInt(document.getElementById("inputMinutes").value) || 0;
+            seconds = parseInt(document.getElementById("inputSeconds").value) || 0;
+            startTimer();
+        });
+
+        document.getElementById("pauseBtn").addEventListener("click", function () {
+            clearInterval(timer);
+        });
+
+        document.getElementById("resetBtn").addEventListener("click", function () {
+            clearInterval(timer);
+            hours = 0;
+            minutes = 0;
+            seconds = 0;
+            document.getElementById("hours").innerText = "00";
+            document.getElementById("minutes").innerText = "00";
+            document.getElementById("seconds").innerText = "00";
+        });
+    </script>
+</body>
+
+</html>
