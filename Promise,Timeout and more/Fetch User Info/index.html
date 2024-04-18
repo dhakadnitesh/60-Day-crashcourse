@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information</title>
+    <style>
+        body{
+            padding:0;
+            margin:0;
+            background-color: black;
+
+        }
+        #btn{
+            display: flex;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20px;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px;
+
+        }
+        #btn:hover{
+            background-color: brown;
+            color: white;
+            cursor: pointer;
+        }
+
+        #container{
+            width: 50%;
+            margin: auto;
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 20px;
+        }
+        .card{
+            text-align: center;
+            border: 1px solid white;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+        .card:hover{
+            cursor: pointer;
+        }
+        .avatar{
+            width: 70%;
+            border-radius: 5px;
+        }
+
+        .name{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+        }
+
+        .email{
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+    <button id="btn">Fetch Users</button>
+    <div id="container"></div>
+    
+</body>
+</html>
+<script src="./index.js"></script>
