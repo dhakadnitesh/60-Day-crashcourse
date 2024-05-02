@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JSX and Babel</title>
+
+    <style>
+        
+
+        button{
+            color: blue;
+            font-size: 18px;
+        }
+
+        button:hover{
+            cursor: pointer;
+            background-color: red;
+            color:white;
+            border-radius: 6px;
+            font-size: 18px;
+            
+        }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      // Your JSX code here
+
+      let root = ReactDOM.createRoot(document.getElementById("root"))
+
+      let eve =()=>{
+        alert("Hello")
+      }
+
+      let Ele = (
+        <>
+        <p>React is a javascript library</p>
+        <div className="main" style={{
+            border:"1px solid red",
+            width:'26%',
+            padding:"10px",
+            borderRadius: "10px"
+        }}>
+
+            <p>Click the below button to alert 'Hello'</p>
+            <button onClick={eve}>Alert Hello</button>
+            
+            </div>
+        
+        </>
+      )
+
+      root.render(Ele)
+    </script>
+  </body>
+</html>
