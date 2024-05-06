@@ -4,6 +4,17 @@ document.getElementById("nav").innerHTML = navbar()
 
 
 
+var isauth = localStorage.getItem("isauth") || "Not Authenticated";
+
+if(isauth !== "Authenticated"){
+    window.location.href = "./signup.html"
+    alert("please do signup")
+
+}
+
+
+
+
 let url = `http://localhost:3000/products`
 
 
