@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic List Rendering</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+
+        .div1{
+            width: 87%;
+            display: grid;
+            grid-template-columns: repeat(4 ,1fr);
+            gap: 20px;
+            border: 1px solid white;
+            padding: 10px 0px;
+            margin: auto;
+            margin-top: 20px ;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+    <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        // Your ItemList component code will go here
+
+        let root = ReactDOM.createRoot(document.getElementById("root"))
+
+        function Gallery({ children }) {
+
+            return (
+                <div className="div1">
+                    {children}
+                </div>
+            )
+
+        }
+
+        function Image({ src }) {
+            return (<img src={src} alt="Gallery Img" style={{ width:"50%", height: 'auto' }} />)
+
+        }
+
+
+        root.render(<Gallery>
+            <Image src="https://svgsilh.com/svg/1325107.svg" />
+            <Image src="https://svgsilh.com/svg/1994653.svg" />
+
+            <Image src="https://svgsilh.com/svg/1994653.svg" />
+            <Image src="https://svgsilh.com/svg/1994653.svg" />
+            <Image src="https://svgsilh.com/svg/1994653.svg" />
+            <Image src="https://svgsilh.com/svg/1994653.svg" />
+            <Image src="https://svgsilh.com/svg/1032131.svg" />
+            <Image src="https://svgsilh.com/svg/1032131.svg" />
+
+
+
+        </Gallery>)
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
