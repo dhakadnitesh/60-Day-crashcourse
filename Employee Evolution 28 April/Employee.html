@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Managment</title>
+    <link rel="stylesheet" href="./Employee.css">
+</head>
+
+<body>
+
+    <h1>Employee Managment System</h1>
+
+    <!-- Bydepartment start -->
+
+    <div id="filterBydepartment">
+        <select name="" id="filter1">
+            <option value="Return-filter1">--Filter--By--department--</option>
+            <option value="hr">Hr</option>
+            <option value="marketing">Marketing</option>
+            <option value="finance">Finance</option>
+            <option value="engineering"> Engineering</option>
+            <option value="operations">Operations</option>
+
+            
+        </select>
+    </div>
+
+    <!-- By department end -->
+
+    <!-- By gender start -->
+
+    <div id="filterBygender">
+       <select name="" id="filter2">
+        <option value="Return-filter2">Filter By Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="others">Other</option>
+       </select>
+    </div>
+
+    <!-- By gender end -->
+
+
+    <!-- sort by salary start -->
+
+    <div id="sortBysalary">
+        <select name="" id="sort">
+            <option value="Return-sort">Sort By Salary</option>
+            <option value="desc">High to Low</option>
+            <option value="asc">Low to High </option>
+        </select>
+    </div>
+
+
+    <!-- sort by salary end -->
+
+
+
+    <!-- Data Appended -->
+
+    <div id="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>S.no</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Department</th>
+                    <th>Salary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- write here -->
+            </tbody>
+        </table>
+
+    </div>
+
+
+
+</body>
+
+</html>
+<script src="./Employee.js"></script>
