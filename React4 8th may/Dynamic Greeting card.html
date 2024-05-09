@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+    <style>
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 10px;
+            width: 200px;
+            background-color: #f9f9f9;
+        }
+        .h4{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        .p{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+<script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    // Your  code will go here
+
+    let root = ReactDOM.createRoot(document.getElementById("root"))
+
+    let GreetingCard = ({ greeting, name }) => {
+
+        return (
+            <div className="card">
+                <h4 className="h4">Greeting : {greeting}</h4>
+                <p className="p">Name : {name}</p>
+            </div>
+        )
+
+
+
+    }
+
+    let Display = () => {
+
+        let [card, setcard] = React.useState([
+            { greeting: "Happy Birthday", name: "John Doe" },
+            { greeting: "Congratulations", name: "Jane Smith" },
+            { greeting: "Merry Christmas", name: "Santa Claus" },
+            { greeting: "Happy Holi", name: "Kamal" },
+
+        ])
+
+        return (
+            <div>
+
+                {card.map((card,index)=>{
+                    return <GreetingCard key={index} greeting={card.greeting} name={card.name}/>
+                })}
+
+            </div>
+        )
+
+    }
+
+
+
+    root.render(<Display />)
+
+
+</script>
+
+</html>
