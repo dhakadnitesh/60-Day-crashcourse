@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Picker</title>
+
+    <style>
+        .div {
+            border: 1px solid black;
+            width: 120px;
+            height: 120px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        let root = ReactDOM.createRoot(document.getElementById("root"));
+
+        let Color = () => {
+
+            let [color, setcolor] = React.useState("")
+            let [isValidColor, setIsValidColor] = React.useState(true);
+
+            function handleValue(e) {
+                const inputColor = e.target.value;
+                const hexRegex = /^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
+
+                if (hexRegex.test(inputColor)) {
+                    setIsValidColor(true);
+                    setcolor(inputColor);
+                } else {
+                    setIsValidColor(false);
+                }
+            }
+
+            return <>
+                <input type="text"
+                    placeholder="Enter HEX Color Code..."
+                    value={color}
+                    onChange={handleValue}
+                />
+                {!isValidColor && <div className="error">Invalid HEX color code!</div>}
+                <div className="div" style={{ backgroundColor: isValidColor ? color : 'transparent' }}></div>
+            </>
+        }
+
+        root.render(<Color />);
+    </script>
+</body>
+
+</html>

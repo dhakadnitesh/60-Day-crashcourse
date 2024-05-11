@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Form</title>
+    <style>
+        button {
+            margin-left: 10px;
+        }
+        button:hover{
+            cursor: pointer;
+        }
+        .btn2{
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        // Your  code will go here
+        const { useState } = React;
+
+        function DynamicInput() {
+            const [inputData, setInputData] = useState([{ value: "" }]);
+
+            function handleChange(e, i) {
+                const { value } = e.target;
+                const newData = [...inputData];
+                newData[i].value = value;
+                setInputData(newData);
+            }
+
+            function addHobbies() {
+                setInputData([...inputData, { value: "" }]);
+            }
+
+            function handleRemove(i) {
+                const filteredData = inputData.filter((_, index) => index !== i);
+                setInputData(filteredData);
+            }
+
+         
+
+            return (
+                <div>
+                    {inputData.map((el, i) => (
+                        <div key={i}>
+                            <input value={el.value} onChange={e => handleChange(e, i)} placeholder="Search Hobbies..."/>
+                            {i !== 0 && <button onClick={() => handleRemove(i)}>Remove</button>}
+                        </div>
+                    ))}
+                    <button onClick={addHobbies} className="btn2">Add Hobbies</button>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<DynamicInput />, document.getElementById("root"));
+    </script>
+</body>
+
+</html>
