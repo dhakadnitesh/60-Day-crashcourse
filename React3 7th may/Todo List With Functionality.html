@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List</title>
+    <style>
+        button{
+            margin-left: 10px;
+        }
+        button:hover{
+            cursor: pointer;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const { useState } = React;
+
+      function TodoList() {
+        const [todos, setTodos] = useState([]);
+        const [filter, setFilter] = useState('all');
+
+        function addTodo(text) {
+          const newTodo = { id: Date.now(), text, completed: false };
+          setTodos([...todos, newTodo]);
+        }
+
+        function toggleTodo(id) {
+          setTodos(
+            todos.map(todo =>
+              todo.id === id ? { ...todo, completed: !todo.completed } : todo
+            )
+          );
+        }
+
+        function removeTodo(id) {
+          setTodos(todos.filter(todo => todo.id !== id));
+        }
+
+        function filterTodos(filter) {
+          setFilter(filter);
+        }
+
+        const filteredTodos =
+          filter === 'all'
+            ? todos
+            : filter === 'active'
+            ? todos.filter(todo => !todo.completed)
+            : todos.filter(todo => todo.completed);
+
+        return (
+          <div>
+            <input type="text" />
+            <button onClick={() => addTodo('New Task')}>Add Task</button>
+            <ul>
+              {filteredTodos.map(todo => (
+                <li
+                  key={todo.id}
+                  onClick={() => toggleTodo(todo.id)}
+                  style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}
+                >
+                  {todo.text}
+                  <button onClick={(e) => {
+                    e.stopPropagation();
+                    removeTodo(todo.id);
+                  }}>Delete</button>
+                </li>
+              ))}
+            </ul>
+            <div>
+              <button onClick={() => filterTodos('all')}>All</button>
+              <button onClick={() => filterTodos('active')}>Active</button>
+              <button onClick={() => filterTodos('completed')}>Completed</button>
+            </div>
+          </div>
+        );
+      }
+
+      ReactDOM.render(<TodoList />, document.getElementById('root'));
+    </script>
+  </body>
+</html>
