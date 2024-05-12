@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDo List</title>
+
+    <style>
+        .int1:hover{
+            cursor: pointer;
+        }
+
+        button{
+            margin-left: 10px;
+        }
+        button:hover{
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel">
+    let root = ReactDOM.createRoot(document.getElementById("root"));
+
+    let ToDoList = () => {
+        const [tasks, setTasks] = React.useState([]);
+        const [inputValue, setInputValue] = React.useState("");
+
+        const handleInputChange = (event) => {
+            setInputValue(event.target.value);
+        };
+
+        const handleSubmit = (event) => {
+            event.preventDefault(); // Prevent default form submission
+            if (inputValue.trim() !== "") {
+                setTasks([...tasks, { text: inputValue, completed: false }]);
+                setInputValue(""); // Clear input after adding task
+            }
+        };
+
+        const toggleTaskCompletion = (index) => {
+            setTasks((prevTasks) =>
+                prevTasks.map((task, i) =>
+                    i === index ? { ...task, completed: !task.completed } : task
+                )
+            );
+        };
+
+        const deleteTask = (index) => {
+            setTasks((prevTasks) => prevTasks.filter((task, i) => i !== index));
+        };
+
+        return (
+            <div>
+                <h1>ToDo List</h1>
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        placeholder="Add Task here"
+                        value={inputValue}
+                        onChange={handleInputChange}
+                    />
+                    <input type="submit" style={{ marginLeft: "10px" }} value="Add" className="int1"/>
+                </form>
+                <ul>
+                    {tasks.map((task, index) => (
+                        <li key={index} className={task.completed ? "completed" : ""}>
+                            <input
+                                type="checkbox"
+                                checked={task.completed}
+                                onChange={() => toggleTaskCompletion(index)}
+                            />
+                            <span>{task.text}</span>
+                            <button onClick={() => deleteTask(index)}>Delete</button>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        );
+    };
+
+    root.render(<ToDoList />);
+</script>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
