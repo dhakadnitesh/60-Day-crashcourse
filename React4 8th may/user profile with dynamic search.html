@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+    <style>
+
+        .user-list{
+            width: 55%;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 20px;
+            margin: auto;
+        }
+        .user-profile{
+            text-align: center;
+            /* border: 1px solid red; */
+            border-radius: 10px;
+            padding: 6px;
+            box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+        }
+
+        .user-profile:hover{
+            cursor: pointer;
+            border: 1px solid blue;
+        }
+        img{
+            border-radius: 10px;
+        }
+        h2{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        p{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        h1{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-left: 20px;
+        }
+        input{
+            margin-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+<script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/babel">
+    // Your  code will go here
+
+    let root = ReactDOM.createRoot(document.getElementById("root"))
+
+    let { useState, useEffect } = React
+
+
+    let UserProfile = ({ user }) => {
+        let { avatar, first_name, email } = user
+        return (
+            <div className="user-profile">
+                <img src={avatar} alt="" />
+                <div>
+                    <h2>{first_name}</h2>
+                    <p>{email}</p>
+                </div>
+
+            </div>
+        )
+    }
+
+    function App() {
+
+        let [users, setusers] = useState([])
+        let [seachQuery,setsearchQuery] = useState("");
+
+        let fetchUsers = async () => {
+            try {
+
+                let response = await axios.get("https://reqres.in/api/users")
+                console.log(response.data.data)
+                setusers(response.data.data)
+
+            } catch (error) {
+                console.log(error)
+
+            }
+
+        }
+
+        useEffect(() => {
+            fetchUsers()
+
+        }, [])
+
+
+        const handleSearch =(e)=>{
+            setsearchQuery(e.target.value)
+        }
+
+        const filteredUsers = users.filter((user)=>user.first_name.toLowerCase().includes(seachQuery.toLowerCase())) 
+
+
+
+        return (
+
+            <>
+            <h1>User Profile</h1>
+            <input type="text"
+            value={seachQuery}
+            onChange={handleSearch}
+            
+            />
+                <div className="user-list" style={{marginTop:"20px"}}>
+                    {filteredUsers.map((user) => (
+                        <UserProfile key={user.id} user={user} />
+
+                    ))}
+                </div>
+
+            </>
+        )
+    }
+
+
+
+    root.render(<App />)
+</script>
+
+</html>
