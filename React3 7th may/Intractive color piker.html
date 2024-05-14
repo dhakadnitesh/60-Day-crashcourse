@@ -7,11 +7,14 @@
     <title>Color Picker</title>
 
     <style>
-        .div {
+        .color-preview {
             border: 1px solid black;
             width: 120px;
             height: 120px;
             margin-top: 20px;
+        }
+        .error {
+            color: red;
         }
     </style>
 </head>
@@ -28,30 +31,32 @@
 
         let Color = () => {
 
-            let [color, setcolor] = React.useState("")
+            let [color, setColor] = React.useState("");
             let [isValidColor, setIsValidColor] = React.useState(true);
 
             function handleValue(e) {
                 const inputColor = e.target.value;
                 const hexRegex = /^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
 
-                if (hexRegex.test(inputColor)) {
+                if (hexRegex.test(inputColor) || inputColor === "") {
                     setIsValidColor(true);
-                    setcolor(inputColor);
+                    setColor(inputColor);
                 } else {
                     setIsValidColor(false);
                 }
             }
 
-            return <>
-                <input type="text"
-                    placeholder="Enter HEX Color Code..."
-                    value={color}
-                    onChange={handleValue}
-                />
-                {!isValidColor && <div className="error">Invalid HEX color code!</div>}
-                <div className="div" style={{ backgroundColor: isValidColor ? color : 'transparent' }}></div>
-            </>
+            return (
+                <>
+                    <input type="text"
+                        placeholder="Enter HEX Color Code..."
+                        value={color}
+                        onChange={handleValue}
+                    />
+                    {!isValidColor && <div className="error">Invalid HEX color code!</div>}
+                    <div className="color-preview" style={{ backgroundColor: isValidColor ? color : 'transparent' }}></div>
+                </>
+            );
         }
 
         root.render(<Color />);
