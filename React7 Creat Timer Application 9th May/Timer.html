@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <meta name="viewport" coauntent="width=device-width, initial-scale=1.0" /> -->
+    <title>Template</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+        }
+        .div1{
+            border: 1px solid black;
+            width: 20%;
+            text-align: center;
+            margin:auto ;
+            margin-top: 30px;
+            padding: 5px;
+            border-radius: 10px;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+
+        }
+        h2{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        p{
+            font-size: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        button{
+            font-size: 18px;
+
+        }
+        button:hover{
+            cursor: pointer;
+            color: blue;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    // Your  code will go here
+    let root = ReactDOM.createRoot(document.getElementById('root'))
+
+    let {useState,useEffect} = React;
+
+
+    let Timer = () => {
+    let [timer, setTimer] = useState(0);
+    let [running, setRunning] = useState(true); 
+    let interval;
+
+    useEffect(() => {
+        if (running) {
+            interval = setInterval(() => {
+                setTimer((prevTimer) => prevTimer + 1);
+            }, 1000);
+        }
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, [running]); 
+
+    
+
+    function handleToggle() {
+        setRunning((prevRunning) => !prevRunning); 
+    }
+
+    return (
+        <div className="div1">
+            <h2>Timer</h2>
+            <p>Timer: {timer}</p>
+            <button onClick={handleToggle}>{running ? "Pause" : "Start"}</button>
+        </div>
+    );
+};
+
+
+    let App = () => {
+    useEffect(() => {
+        const handleScroll = () => {
+            console.log("Scrolling...");
+            
+        };
+
+        
+        window.addEventListener("scroll", handleScroll);
+
+        
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []); 
+
+    return (
+        <>
+            <Timer />
+        </>
+    );
+};
+
+
+    
+    root.render(<App/>)
+  </script>
+</html>
