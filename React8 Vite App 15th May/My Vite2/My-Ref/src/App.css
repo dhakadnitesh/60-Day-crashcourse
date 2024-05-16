@@ -1,0 +1,15 @@
+
+.div1{
+  /* border: 1px solid red; */
+  margin-top: -200px;
+  margin-left: 20px;
+}
+.div2{
+  margin-left: 20px;
+}
+p{
+  color: green;
+}
+.div3:hover{
+  cursor: pointer;
+}
